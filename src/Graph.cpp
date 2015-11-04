@@ -1,4 +1,4 @@
-#include "Graph.h"
+#include "../include/Graph.h"
 
 Graph::Graph(count n) : n(n), m(0), z(n), t(0), weighted(false), deg(z, 0), exists(z, true), adja(z), eweights(z) {
     // set name from global id

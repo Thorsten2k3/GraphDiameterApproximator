@@ -1,4 +1,4 @@
-#include "BFS.h"
+#include "../include/BFS.h"
 
 std::pair<std::vector<count>, node> BFS::run_Feist(const Graph& g, node source) const {
     count infDist = std::numeric_limits<count>::max();

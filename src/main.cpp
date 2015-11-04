@@ -1,20 +1,20 @@
 #include <iostream>
 #include <string>
 
-#include "Graph.h"
-#include "BFS.h"
-#include "Diameter.h"
-#include "ReadInput.h"
+#include "../include/Graph.h"
+#include "../include/BFS.h"
+#include "../include/Diameter.h"
+#include "../include/ReadInput.h"
 
 int main(int argc, const char* argv[]) {
     Diameter d;
     
-    std::string path = "jazz1.graph";  
+    std::string path = "../graphs/jazz1.graph";  
     ReadInput parser(path);
             
     std::tuple<count, count, count> header = parser.getHeader();
     count n = std::get<0>(header);
-    count m = std::get<1>(header);
+    //count m = std::get<1>(header);
     count weighted = std::get<2>(header);
     
     Graph G(n);

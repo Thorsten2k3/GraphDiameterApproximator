@@ -1,4 +1,4 @@
-#include "GraphDistance.h"
+#include "../include/GraphDistance.h"
 
 count GraphDistance::unweightedDistance(const Graph& g, node u, node v) const {
         BFS bfs;

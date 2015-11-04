@@ -1,4 +1,4 @@
-#include "Diameter.h"
+#include "../include/Diameter.h"
 
 std::pair<count, count> Diameter::estimatedDiameterRange(const Graph& G, count p) {
     count lowerBound = 0;
@@ -52,11 +52,10 @@ std::pair<count, count> Diameter::estimatedDiameterRange(const Graph& G, count p
             if (resultOfBFS.first[resultOfBFS.second] > lowerBound)
                 lowerBound = resultOfBFS.first[resultOfBFS.second];
 
-        } // (1)
+        } 
 
         // 2. compute tree upper bound 
         {   
-            //startNode = d(e);
             startNode = highToLow[inc];
             std::vector<count> distances(n, infDist);
             std::queue<node> q;
@@ -88,9 +87,9 @@ std::pair<count, count> Diameter::estimatedDiameterRange(const Graph& G, count p
 
             inc++;
 
-        } // (2)
+        } 
 
-    } //while
+    } 
 
     return std::make_pair(lowerBound, upperBound);
 }

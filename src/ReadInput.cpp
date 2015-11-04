@@ -1,7 +1,6 @@
-#include "ReadInput.h"
+#include "../include/ReadInput.h"
 
 static std::vector<node> parseLine(const std::string& line) {
-
     std::stringstream stream(line);
     std::string token;
     char delim = ' ';
@@ -18,23 +17,17 @@ static std::vector<node> parseLine(const std::string& line) {
 }
 
 ReadInput::ReadInput(std::string path) : graphFile(path) {
-
     if( ! (this->graphFile) ) {  // TODO: try??
         throw std::runtime_error("invalid graph file");
     } 
 }
 
 bool ReadInput::hasNext() {
-    
     return this->graphFile.good();
-
 }
 
 std::tuple<count, count, count> ReadInput::getHeader() {
-
-    count n; 
-    count m; 
-    count weighted; 
+    count n, m, weighted;
 
     std::string line = "";
     assert (this->graphFile);
@@ -51,7 +44,7 @@ std::tuple<count, count, count> ReadInput::getHeader() {
             return std::tuple<count, count, count>(n,m,0);
         }
         if (tokens.size() == 3) {
-            if (tokens[2] < 2) {
+            if( tokens[2] < 2 ) {
                 weighted = tokens[2];
             } else {
                 throw std::runtime_error("nodes are weighted");

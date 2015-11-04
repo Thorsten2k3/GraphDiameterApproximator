@@ -1,33 +1,25 @@
-.SUFFIXES:
+CC := g++ # This is the main compiler
 
-SHELL	= /bin/sh
+SRCDIR := src
+BUILDDIR := build
+TARGET := bin/runner
+SRCEXT := cpp
+SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
+OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
+CFLAGS := -g -Wall -ffast-math -std=c++14
+LIB := 
+INC := -I include
 
-# Compilers
-ifeq ($(clang),1)
-	CXX	= clang
-	LINK	= clang
-else
-	CXX	= g++
-	LINK	= g++
-endif
+$(TARGET): $(OBJECTS)
+	@echo " Linking..."
+	@echo " $(CC) $^ -o $(TARGET) $(LIB)"; $(CC) $^ -o $(TARGET) $(LIB)
 
-# Flags
-CXXFLAGS	= -Wall -ffast-math -std=c++14
-
-# Debug/Release configuration
-ifeq ($(dbg),1)
-	CXXFLAGS	+= -g
-	BINSUBDIR	:= debug
-else
-	CXXFLAGS	+= -Ofast -DNDEBUG
-	BINSUBDIR	:= release
-endif
-
-main: 
-	#rm -rf *.o *~ run
-	$(CXX) -o run $(CXXFLAGS) Graph.cpp BFS.cpp Diameter.cpp GraphDistance.cpp ReadInput.cpp main.cpp
-	
-.PHONY: clean
+$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
+	@mkdir -p $(BUILDDIR)
+	@echo " $(CC) $(CFLAGS) $(INC) -c -o $@ $<"; $(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
 clean:
-	rm -rf *.o *~ run
+	@echo " Cleaning...";
+	@echo " $(RM) -r $(BUILDDIR) $(TARGET)"; $(RM) -r $(BUILDDIR) $(TARGET)
+
+.PHONY: clean
