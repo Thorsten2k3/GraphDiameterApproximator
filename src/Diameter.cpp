@@ -31,6 +31,7 @@ std::pair<count, count> Diameter::estimatedDiameterRange(const Graph& G, count p
             if (e == infDist) {
                 lowerBound = infDist;
                 upperBound = infDist;
+                // diameter is infinity by definition iff G is unconnected
                 return std::make_pair(lowerBound, upperBound);
             }
         }        
@@ -51,7 +52,6 @@ std::pair<count, count> Diameter::estimatedDiameterRange(const Graph& G, count p
                         
             if (resultOfBFS.first[resultOfBFS.second] > lowerBound)
                 lowerBound = resultOfBFS.first[resultOfBFS.second];
-
         } 
 
         // 2. compute tree upper bound 
@@ -86,7 +86,6 @@ std::pair<count, count> Diameter::estimatedDiameterRange(const Graph& G, count p
                 upperBound = resultOfBFS.first[resultOfBFS.second];
 
             inc++;
-
         } 
 
     } 

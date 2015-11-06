@@ -2,4 +2,4 @@
 build
 
 # Ignore executable
-bin/runner
+bin/*

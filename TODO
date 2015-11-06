@@ -1,0 +1,8 @@
+TODO ideas:
+
+- Implement slim, library-independend command line parser 
+- Add usage description to README.md
+- Add more test graphs in /graphs 
+- Add Boost.Test-based Unit test cases ? (Boost dependency ok?)
+- std::chrono to precisely stop algorithm runtime  
+- Advanced error handling in C++xx-style 
